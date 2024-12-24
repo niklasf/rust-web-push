@@ -109,12 +109,12 @@ impl<'a> HttpEce<'a> {
         if let Some(signature) = &self.vapid_signature {
             headers.push((
                 "Authorization",
-                dbg!(format!(
+                format!(
                     "vapid t={}, k={}",
                     signature.auth_t,
                     Base64UrlSafeNoPadding::encode_to_string(&signature.auth_k)
                         .expect("encoding a valid auth_k cannot overflow")
-                )),
+                ),
             ));
         }
     }
